@@ -21,18 +21,6 @@ resource "aws_security_group" "allow-tls" {
     ipv6_cidr_blocks = ["::/0"]
    }
 
- # here ingress is going to be special variable
-   dynamic "ingress" {
-       for_each = var.ingress_rules
-       content {
-            from_port  = ingress.value.port
-            to_port = ingress.value.port
-            protocol         = "tcp" # -1 means everything all traffic
-            cidr_blocks      = ingress.value.cidr_blocks
-            description      =  ingress.value.description
-       }
-   }
-
 # the below is the repeated code so to avoid by doing like this, terraform created a loop called dynamic
 
 #    ingress{
@@ -50,6 +38,19 @@ resource "aws_security_group" "allow-tls" {
 #     cidr_blocks = ["0.0.0.0/0"]
 #     ipv6_cidr_blocks = ["::/0"]
 #    }
+
+# here ingress is going to be special variable
+   dynamic "ingress" {
+       for_each = var.ingress_rules
+       content {
+            from_port  = ingress.value.port
+            to_port = ingress.value.port
+            protocol         = "tcp" # -1 means everything all traffic
+            cidr_blocks      = ingress.value.cidr_blocks
+            description      =  ingress.value.description
+       }
+   }
+
 
     tags = {
     Name = "allow-all-terraform"
