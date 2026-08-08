@@ -6,3 +6,11 @@ resource "aws_route53_record" "roboshop" {
     ttl = 1
     records = [each.value.private_ip]
 }
+
+resource "aws_route53_record" "roboshop-frontend" {
+    zone_id = var.zone_id
+    name = "roboshop.${var.domain_name}"
+    type = "A"
+    ttl = 1
+    records = [lookup(aws_instance.roboshop, "frontend").public_ip]
+}

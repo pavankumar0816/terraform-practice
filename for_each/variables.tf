@@ -16,7 +16,7 @@ variable "ami_id" {
 # This should be converted to set 
 variable "instances" {
     type = list
-    default = ["mongodb", "redis"]
+    default = ["mongodb", "redis", "frontend"]
 }
  
 variable "zone_id" {
