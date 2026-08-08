@@ -2,6 +2,6 @@
 #     value = aws_instance.roboshop
 # }
 
-output "courses" {
-    value = ["DevOps", "Cloud", "FullStack"]
-}
+# output "courses" {
+#     value = ["DevOps", "Cloud", "FullStack"]
+# }
