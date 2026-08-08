@@ -7,7 +7,7 @@ resource "aws_route53_record" "roboshop" {
     records = [each.value.private_ip]
 }
 
-resource "aws_route53_record" "roboshop-frontend" {
+resource "aws_route53_record" "roboshop-f" {
     zone_id = var.zone_id
     name = "roboshop.${var.domain_name}"
     type = "A"
